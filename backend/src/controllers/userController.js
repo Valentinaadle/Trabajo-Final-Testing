@@ -32,21 +32,27 @@ const getUserById = async (req, res) => {
 // Login de usuario
 const loginUser = async (req, res) => {
   try {
+    // LOG: Email y password recibidos
     console.log('Datos recibidos en login:', req.body);
     const { email, password } = req.body;
+    console.log('Email recibido:', email, '| Password recibido:', password);
 
     // Buscar usuario
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      console.log('Usuario no encontrado con email:', email);
+      console.log('Usuario NO encontrado con email EXACTO:', email);
       return res.status(401).json({ message: 'Credenciales inválidas' });
+    } else {
+      console.log('Usuario encontrado:', user.email, '| Hash en DB:', user.password, '| Activo:', user.activo, '| Role:', user.role, '| Role_id:', user.role_id);
     }
 
     // Verificar contraseña
     const validPassword = await user.validPassword(password);
     if (!validPassword) {
-      console.log('Contraseña inválida para usuario:', email);
+      console.log('Contraseña inválida para usuario:', email, '| Password ingresado:', password, '| Hash en DB:', user.password);
       return res.status(401).json({ message: 'Credenciales inválidas' });
+    } else {
+      console.log('Contraseña válida para usuario:', email);
     }
 
     // Generar token JWT
@@ -94,7 +100,8 @@ const createUser = async (req, res) => {
       password,
       nombre,
       apellido,
-      role: 'user',
+      role: 'user', // siempre user
+      role_id: 1,   // siempre id de user
       activo: true
     });
 
