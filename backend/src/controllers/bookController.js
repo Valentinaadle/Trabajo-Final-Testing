@@ -485,26 +485,34 @@ const getBooksByUser = async (req, res) => {
   }
 };
 
+// Buscar libros en la base de datos local por título o autor
 const searchBooksInDB = async (req, res) => {
-  const { query } = req.query;
-  if (!query) {
-    return res.json([]);
-  }
   try {
+    const { query } = req.query;
+    if (!query || typeof query !== 'string' || !query.trim()) {
+      return res.status(400).json({ error: 'Falta el parámetro de búsqueda' });
+    }
+
+    // Buscar por título o autor, ignorando mayúsculas/minúsculas
     const books = await Book.findAll({
       where: {
         [Op.or]: [
-          { title: { [Op.like]: `%${query}%` } },
-          // Buscar en autores (asumiendo que es un array o string)
-          { authors: { [Op.like]: `%${query}%` } },
-          { isbn: { [Op.like]: `%${query}%` } },
-          { isbn_code: { [Op.like]: `%${query}%` } }
+          { title: { [Op.iLike]: `%${query}%` } },
+          { authors: { [Op.iLike]: `%${query}%` } }
         ]
-      }
+      },
+      include: [
+        { model: Image, attributes: ['image_id', 'image_url'] },
+        { model: Category, attributes: ['category_id', 'category_name'] }
+      ],
+      order: [['createdAt', 'DESC']]
     });
-    res.json(books);
+
+    // Siempre devolver un array (vacío o con resultados)
+    return res.json(Array.isArray(books) ? books : []);
   } catch (error) {
-    res.status(500).json({ error: 'Error al buscar libros en la base de datos' });
+    console.error('Error en searchBooksInDB:', error);
+    return res.status(500).json({ error: 'Error interno al buscar libros en la base de datos' });
   }
 };
 
