@@ -1,5 +1,6 @@
 import React from 'react';
 import BookCard from './BookCard';
+import { getBookImage } from '../utils/bookUtils';
 import '../Assets/css/recomendaciones.css';
 
 function Recomendados({ libros }) {
@@ -7,11 +8,11 @@ function Recomendados({ libros }) {
     <div className="recomendaciones">
       <div className="recomendaciones-grid">
         {libros.map(libro => (
-          <BookCard key={libro.book_id} {...libro} />
+          <BookCard key={libro.book_id} {...libro} img={getBookImage(libro)} />
         ))}
       </div>
     </div>
   );
 }
 
-export default Recomendados; 
+export default Recomendados;

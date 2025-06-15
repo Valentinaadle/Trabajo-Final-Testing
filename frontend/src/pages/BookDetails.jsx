@@ -310,6 +310,7 @@ function BookDetails() {
           <div className="book-content">
             <div className="book-left-column">
               <div className="book-cover">
+                {console.log('DEBUG bookImages:', bookImages)}
                 {bookImages.length > 0 ? (
                   <div className="carousel">
                     <button
@@ -322,6 +323,7 @@ function BookDetails() {
                       alt={`Imagen ${activeImage + 1} de ${book.title}`}
                       className="carousel-image"
                       onError={(e) => {
+                        console.error('Error cargando imagen:', bookImages[activeImage]);
                         e.target.src = DEFAULT_BOOK_IMAGE;
                         e.target.onerror = null;
                       }}

@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useFavorites } from '../context/FavoritesContext';
 import '../Assets/css/bookcard.css';
-import { FaShoppingCart, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
+import { getBookImage } from '../utils/bookUtils';
 const DEFAULT_BOOK_IMAGE = '/Assets/images/default-book.png';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const BookCard = ({
   descuento,
@@ -19,7 +19,13 @@ const BookCard = ({
   showComprar = true,
   book_id,
   isAdmin = false,
-  onDelete
+  onDelete,
+  coverImageUrl,
+  imageUrl,
+  Images,
+  imagen,
+  coverIndex,
+  volumeInfo
 }) => {
   const { user } = useAuth();
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
@@ -116,6 +122,18 @@ const BookCard = ({
     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
   };
 
+  // Determina la imagen a mostrar: si hay 'img', úsala; si no, usa getBookImage con las props.
+  // Usa directamente las props del componente para getBookImage
+  const libro = {
+    coverImageUrl,
+    imageUrl,
+    Images,
+    imagen,
+    coverIndex,
+    volumeInfo
+  };
+  const bookImage = img || getBookImage(libro);
+
   return (
     <>
       <div 
@@ -142,7 +160,7 @@ const BookCard = ({
           )}
 
           <img 
-            src={img || DEFAULT_BOOK_IMAGE} 
+            src={bookImage || DEFAULT_BOOK_IMAGE} 
             alt={titulo}
             onError={(e) => {
               e.target.src = DEFAULT_BOOK_IMAGE;
