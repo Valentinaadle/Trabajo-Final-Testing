@@ -485,7 +485,7 @@ const getBooksByUser = async (req, res) => {
   }
 };
 
-// Buscar libros en la base de datos local por título o autor
+// Buscar libros en la base de datos local solo por título
 const searchBooksInDB = async (req, res) => {
   try {
     const { query } = req.query;
@@ -493,13 +493,10 @@ const searchBooksInDB = async (req, res) => {
       return res.status(400).json({ error: 'Falta el parámetro de búsqueda' });
     }
 
-    // Buscar por título o autor, ignorando mayúsculas/minúsculas
+    // Buscar solo por título (campo tipo texto)
     const books = await Book.findAll({
       where: {
-        [Op.or]: [
-          { title: { [Op.iLike]: `%${query}%` } },
-          { authors: { [Op.iLike]: `%${query}%` } }
-        ]
+        title: { [Op.iLike]: `%${query}%` }
       },
       include: [
         { model: Image, attributes: ['image_id', 'image_url'] },
@@ -508,7 +505,6 @@ const searchBooksInDB = async (req, res) => {
       order: [['createdAt', 'DESC']]
     });
 
-    // Siempre devolver un array (vacío o con resultados)
     return res.json(Array.isArray(books) ? books : []);
   } catch (error) {
     console.error('Error en searchBooksInDB:', error);
