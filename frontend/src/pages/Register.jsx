@@ -7,6 +7,8 @@ import '../Assets/css/register.css';
 import '../Assets/css/header.css';
 import '../Assets/css/footer.css';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function Register() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
