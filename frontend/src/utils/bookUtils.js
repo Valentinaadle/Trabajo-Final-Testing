@@ -1,5 +1,5 @@
 // Función para obtener la URL de la imagen del libro
-export function getBookImage(book, API_URL = 'http://localhost:5000') {
+export function getBookImage(book, API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000') {
   const DEFAULT_BOOK_IMAGE = '/icono2.png';
 
   // 1. Usar coverImageUrl si existe
