@@ -28,8 +28,8 @@ const Wishlist = sequelize.define('Wishlist', {
     defaultValue: DataTypes.NOW
   }
 }, {
-  tableName: 'wishlist',
+  tableName: 'wishlist', // Nombre de tabla explícito para PostgreSQL
   timestamps: false
 });
 
-module.exports = Wishlist; 
+module.exports = Wishlist;

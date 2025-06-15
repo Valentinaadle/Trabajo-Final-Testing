@@ -2,11 +2,12 @@ const { Sequelize } = require('sequelize');
 
 
 const sequelize = new Sequelize({
-  dialect: 'mysql',
+  dialect: 'postgres', // Cambiado de 'mysql' a 'postgres' para Supabase
   host: process.env.DB_HOST || 'localhost',
-  username: process.env.DB_USER || 'root',
+  username: process.env.DB_USER || 'postgres', // Usuario por defecto de Supabase
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'bookloop',
+  port: process.env.DB_PORT || 5432, // Puerto por defecto PostgreSQL
   logging: false
 });
 

@@ -100,6 +100,7 @@ const Book = sequelize.define('Book', {
     allowNull: true
   }
 }, {
+  tableName: 'books', // Nombre de tabla explícito para PostgreSQL
   timestamps: true
 });
 

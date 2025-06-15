@@ -230,6 +230,20 @@ function EditBook() {
         coverImageUrl: coverUrl,
         category_id: form.category_id
       };
+      // --- CORRECCIÓN DE FORMATO DE FECHA ---
+      if (/^\d{4}$/.test(payload.publication_date)) {
+        payload.publication_date = payload.publication_date + '-01-01';
+      }
+      if (!payload.publication_date) {
+        payload.publication_date = '';
+      }
+      // --- FIN CORRECCIÓN FECHA ---
+      // Corregir pageCount: si está vacío o no es número, poner null; si es número, convertirlo
+      if (payload.pageCount === "" || isNaN(Number(payload.pageCount))) {
+        payload.pageCount = null;
+      } else {
+        payload.pageCount = Number(payload.pageCount);
+      }
       console.log('Payload a enviar:', payload);
       const response = await fetch(`${API_URL}/api/books/${id}`, {
         method: 'PUT',

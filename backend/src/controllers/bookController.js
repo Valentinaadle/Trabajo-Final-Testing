@@ -43,7 +43,7 @@ const getBooks = async (req, res) => {
   try {
     const books = await Book.findAll({
       include: [
-        { model: require('../models/Image'), attributes: ['image_id', 'image_url'] },
+        { model: Image, attributes: ['image_id', 'image_url'] },
         { model: Category, attributes: ['category_id', 'category_name'] }
       ],
       order: [['createdAt', 'DESC']]
@@ -51,10 +51,18 @@ const getBooks = async (req, res) => {
 
     const booksWithGenre = books.map(book => {
       const bookData = book.toJSON();
+      // Siempre devolver un coverImageUrl válido
+      let coverImageUrl = '';
+      if (bookData.coverImageUrl) {
+        coverImageUrl = bookData.coverImageUrl;
+      } else if (bookData.Images && bookData.Images.length > 0) {
+        // Usa la PRIMERA imagen asociada (puedes cambiar a [0] o [-1] según prefieras)
+        coverImageUrl = bookData.Images[0].image_url;
+      }
       return {
         ...bookData,
         genre: book.Category ? book.Category.category_name : null,
-        coverImageUrl: bookData.coverImageUrl || (bookData.Images && bookData.Images.length > 0 ? bookData.Images[bookData.Images.length-1].image_url : null)
+        coverImageUrl
       };
     });
 
@@ -79,9 +87,16 @@ const getBookById = async (req, res) => {
       return res.status(404).json({ message: 'Libro no encontrado' });
     }
     const bookData = book.toJSON();
+    // Siempre devolver un coverImageUrl válido
+    let coverImageUrl = '';
+    if (bookData.coverImageUrl) {
+      coverImageUrl = bookData.coverImageUrl;
+    } else if (bookData.Images && bookData.Images.length > 0) {
+      coverImageUrl = bookData.Images[0].image_url;
+    }
     const enrichedBook = {
       ...bookData,
-      coverImageUrl: bookData.coverImageUrl || (bookData.Images && bookData.Images.length > 0 ? bookData.Images[bookData.Images.length-1].image_url : null)
+      coverImageUrl
     };
     res.json(enrichedBook);
   } catch (error) {

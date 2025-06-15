@@ -16,6 +16,7 @@ const Image = sequelize.define('Image', {
     allowNull: false
   }
 }, {
+  tableName: 'images', // Forzar uso de tabla en minúscula
   timestamps: false
 });
 

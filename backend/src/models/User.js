@@ -42,6 +42,7 @@ const User = sequelize.define('User', {
     defaultValue: true
   }
 }, {
+  tableName: 'users', // Nombre de tabla explícito para PostgreSQL
   timestamps: true,
   hooks: {
     beforeCreate: async (user) => {

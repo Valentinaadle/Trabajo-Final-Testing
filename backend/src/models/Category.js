@@ -12,6 +12,7 @@ const Category = sequelize.define('Category', {
     allowNull: false
   }
 }, {
+  tableName: 'categories', // Nombre de tabla explícito para PostgreSQL
   timestamps: false
 });
 

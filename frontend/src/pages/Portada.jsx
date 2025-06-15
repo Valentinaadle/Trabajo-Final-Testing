@@ -90,7 +90,17 @@ function Recomendaciones({ libros, preferencias }) {
     <div>
       <h3>Recomendaciones para ti:</h3>
       {librosRecomendados.map(libro => (
-        <BookCard key={libro.book_id} {...libro} />
+        <BookCard
+          key={libro.book_id}
+          descuento={libro.descuento}
+          img={getBookImage(libro, API_URL)}
+          titulo={libro.title || libro.titulo}
+          autor={getBookAuthor(libro)}
+          precio={libro.price || libro.precio}
+          book_id={libro.book_id}
+          showFavorito={true}
+          showComprar={true}
+        />
       ))}
     </div>
   );
