@@ -12,6 +12,7 @@ import BookCard from '../components/BookCard';
 import { getBookImage, getBookAuthor } from '../utils/bookUtils';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+console.log('API_URL desde Books.jsx:', API_URL);
 const DEFAULT_BOOK_IMAGE = '/icono2.png';
 const DESCUENTOS = ['-10%', '-20%', '-30%', '-40%', '-50%'];
 
