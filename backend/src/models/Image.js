@@ -18,6 +18,9 @@ const Image = sequelize.define('Image', {
 }, {
   tableName: 'images', // Forzar uso de tabla en minúscula
   timestamps: false
+}, {
+  tableName: 'images',
+  freezeTableName: true
 });
 
 module.exports = Image; 

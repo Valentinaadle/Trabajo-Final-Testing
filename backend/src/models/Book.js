@@ -102,6 +102,9 @@ const Book = sequelize.define('Book', {
 }, {
   tableName: 'books', // Nombre de tabla explícito para PostgreSQL
   timestamps: true
+}, {
+  tableName: 'books',
+  freezeTableName: true
 });
 
 module.exports = Book; 

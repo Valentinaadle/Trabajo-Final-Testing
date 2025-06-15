@@ -58,6 +58,9 @@ const User = sequelize.define('User', {
       }
     }
   }
+}, {
+  tableName: 'users',
+  freezeTableName: true
 });
 
 User.prototype.validPassword = async function(password) {

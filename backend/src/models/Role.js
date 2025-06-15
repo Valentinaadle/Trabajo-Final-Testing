@@ -13,6 +13,9 @@ const Role = sequelize.define('Role', {
   }
 }, {
   timestamps: false
+}, {
+  tableName: 'roles',
+  freezeTableName: true
 });
 
 module.exports = Role; 

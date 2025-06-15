@@ -42,6 +42,9 @@ const Review = sequelize.define('Review', {
   }
 }, {
   timestamps: false
+}, {
+  tableName: 'reviews',
+  freezeTableName: true
 });
 
 module.exports = Review; 

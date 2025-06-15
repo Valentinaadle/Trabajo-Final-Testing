@@ -21,7 +21,13 @@ const wishlistRoutes = require('./routes/wishlistRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://trabajo-final-testing.vercel.app', // frontend en Vercel
+    'http://localhost:3000' // desarrollo local
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static(__dirname + '/../uploads'));
 

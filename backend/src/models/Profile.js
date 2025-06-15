@@ -37,6 +37,9 @@ const Profile = sequelize.define('Profile', {
     }
 }, {
     timestamps: true
+}, {
+  tableName: 'profiles',
+  freezeTableName: true
 });
 
 module.exports = Profile; 

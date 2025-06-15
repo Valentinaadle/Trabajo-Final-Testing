@@ -30,6 +30,9 @@ const Transaction = sequelize.define('Transaction', {
   }
 }, {
   timestamps: false
+}, {
+  tableName: 'transactions',
+  freezeTableName: true
 });
 
 module.exports = Transaction; 
