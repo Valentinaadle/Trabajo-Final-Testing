@@ -1,5 +1,55 @@
 # BookLoop - Sistema de Gestión de Biblioteca
 
+---
+
+## 🚀 Despliegue gratuito: Vercel + Railway + Supabase
+
+### ¿Cómo tener BookLoop online, gratis y sin sorpresas?
+
+**Frontend:** [Vercel](https://vercel.com/)  
+**Backend:** [Railway](https://railway.app/)  
+**Base de datos:** [Supabase](https://supabase.com/) (PostgreSQL)
+
+### Checklist para NO PAGAR
+- Usá siempre los planes gratuitos (Free Tier) de cada plataforma.
+- No subas archivos grandes (imágenes, videos) a Railway o Supabase.
+- Apagá/eliminá proyectos viejos o que no uses.
+- Revisá el dashboard de cada servicio para ver el uso.
+- En Vercel y Railway, no dejes servicios corriendo 24/7 si no es necesario.
+- ¡Nunca expongas claves privadas en el frontend!
+
+### Ejemplo de variables de entorno
+
+**Frontend (`/frontend/.env`):**
+```env
+REACT_APP_API_URL=trabajo-final-testing-production.up.railway.app
+```
+(No barra al final)
+
+**Backend (`/backend/.env`):**
+```env
+DB_HOST=aws-0-sa-east-1.pooler.supabase.com
+DB_USER=postgres.zzxgvsjwfzkbcoymnore
+DB_PASSWORD=1f2t3b4d5a6d!
+DB_NAME=postgres
+DB_PORT=5432
+DIALECT=postgres
+
+# Email Configuration
+EMAIL_USER=itsbookloop@gmail.com
+EMAIL_PASSWORD=gcnsizqqkkgwydib
+```
+
+### Tips para tus compañeros
+- Siempre usar variables de entorno para las URLs y claves.
+- Si cambiás una variable en Vercel o Railway, hacé **redeploy**.
+- Si ves errores de CORS, revisá los orígenes permitidos en el backend.
+- Si algo no carga, revisá la consola del navegador y la pestaña Network.
+- Compartí este README y tu .env.example para que todos puedan configurar igual.
+
+---
+
+
 Este proyecto es un sistema de gestión de biblioteca que permite administrar libros, préstamos y usuarios.
 
 ## Estructura del Proyecto
