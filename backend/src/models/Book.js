@@ -100,12 +100,18 @@ const Book = sequelize.define('Book', {
   publisher: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  createdat: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  updatedat: {
+    type: DataTypes.DATE,
+    allowNull: true
   }
 }, {
   tableName: 'books', // Nombre de tabla explícito para PostgreSQL
-  timestamps: true
-}, {
-  tableName: 'books',
+  timestamps: false,
   freezeTableName: true
 });
 
