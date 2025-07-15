@@ -47,48 +47,59 @@ const Book = sequelize.define('Book', {
   authors: {
     type: DataTypes.JSON,
     allowNull: false,
-    defaultValue: []
+    defaultValue: [],
+    field: 'authors'
   },
   description: {
     type: DataTypes.TEXT('long'),
-    allowNull: true
+    allowNull: true,
+    field: 'description'
   },
   publishedDate: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: 'publisheddate'
   },
   isbn: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: 'isbn'
   },
   pageCount: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: true,
+    field: 'pagecount'
   },
   imageUrl: {
     type: DataTypes.STRING(1000),
-    allowNull: true
+    allowNull: true,
+    field: 'imageurl'
   },
   coverImageUrl: {
     type: DataTypes.STRING(1000),
-    allowNull: true
+    allowNull: true,
+    field: 'coverimageurl'
   },
   categories: {
     type: DataTypes.JSON,
     allowNull: true,
-    defaultValue: []
+    defaultValue: [],
+    field: 'categories'
   },
   language: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: 'language'
   },
   averageRating: {
     type: DataTypes.FLOAT,
-    allowNull: true
+    allowNull: true,
+    field: 'averagerating'
   },
   quantity: {
     type: DataTypes.INTEGER,
-    defaultValue: 1
+    defaultValue: 1,
+    field: 'quantity'
   },
   available: {
     type: DataTypes.BOOLEAN,
