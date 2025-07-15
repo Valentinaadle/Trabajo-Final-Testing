@@ -69,7 +69,7 @@ const getBooks = async (req, res) => {
     res.json(booksWithGenre);
   } catch (error) {
     console.error('Error al obtener libros:', error);
-    res.status(500).json({ message: 'Error al obtener libros' });
+    res.status(500).json({ message: 'Error al obtener libros', details: error.message, stack: error.stack });
   }
 };
 
