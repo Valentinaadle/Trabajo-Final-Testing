@@ -23,7 +23,8 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: [
-    'https://trabajo-final-testing.vercel.app', // frontend en Vercel
+    'https://trabajo-final-testing-8c0x5ts88-valentinas-projects-bb5e97ab.vercel.app', // dominio real de Vercel
+    'https://trabajo-final-testing.vercel.app', // dominio principal de Vercel
     'http://localhost:3000' // desarrollo local
   ],
   credentials: true
