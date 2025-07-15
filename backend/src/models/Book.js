@@ -33,73 +33,60 @@ const Book = sequelize.define('Book', {
     allowNull: true,
     field: 'publication_date'
   },
-  googleBooksId: {
+  googlebooksid: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: true,
-    field: 'googlebooksid'
+    allowNull: true
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false,
-    field: 'title'
+    allowNull: false
   },
   authors: {
     type: DataTypes.JSON,
     allowNull: false,
-    defaultValue: [],
-    field: 'authors'
+    defaultValue: []
   },
   description: {
     type: DataTypes.TEXT('long'),
-    allowNull: true,
-    field: 'description'
+    allowNull: true
   },
-  publishedDate: {
+  publisheddate: {
     type: DataTypes.STRING,
-    allowNull: true,
-    field: 'publisheddate'
+    allowNull: true
   },
   isbn: {
     type: DataTypes.STRING,
-    allowNull: true,
-    field: 'isbn'
+    allowNull: true
   },
-  pageCount: {
+  pagecount: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    field: 'pagecount'
+    allowNull: true
   },
-  imageUrl: {
+  imageurl: {
     type: DataTypes.STRING(1000),
-    allowNull: true,
-    field: 'imageurl'
+    allowNull: true
   },
-  coverImageUrl: {
+  coverimageurl: {
     type: DataTypes.STRING(1000),
-    allowNull: true,
-    field: 'coverimageurl'
+    allowNull: true
   },
   categories: {
     type: DataTypes.JSON,
     allowNull: true,
-    defaultValue: [],
-    field: 'categories'
+    defaultValue: []
   },
   language: {
     type: DataTypes.STRING,
-    allowNull: true,
-    field: 'language'
+    allowNull: true
   },
-  averageRating: {
+  averagerating: {
     type: DataTypes.FLOAT,
-    allowNull: true,
-    field: 'averagerating'
+    allowNull: true
   },
   quantity: {
     type: DataTypes.INTEGER,
-    defaultValue: 1,
-    field: 'quantity'
+    defaultValue: 1
   },
   available: {
     type: DataTypes.BOOLEAN,
