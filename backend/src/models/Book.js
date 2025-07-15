@@ -25,20 +25,24 @@ const Book = sequelize.define('Book', {
   },
   condition: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: 'condition'
   },
   publication_date: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: 'publication_date'
   },
   googleBooksId: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: true
+    allowNull: true,
+    field: 'googlebooksid'
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    field: 'title'
   },
   authors: {
     type: DataTypes.JSON,
