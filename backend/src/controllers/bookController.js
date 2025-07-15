@@ -46,7 +46,7 @@ const getBooks = async (req, res) => {
         { model: Image, attributes: ['image_id', 'image_url'] },
         { model: Category, attributes: ['category_id', 'category_name'] }
       ],
-      order: [['createdAt', 'DESC']]
+      order: [['createdat', 'DESC']]
     });
 
     const booksWithGenre = books.map(book => {
@@ -476,7 +476,7 @@ const getBooksByUser = async (req, res) => {
         { model: Image, attributes: ['image_id', 'image_url'] },
         { model: Category, attributes: ['category_id', 'category_name'] }
       ],
-      order: [['createdAt', 'DESC']] // Ordenar por fecha de creación, más reciente primero
+      order: [['createdat', 'DESC']] // Ordenar por fecha de creación, más reciente primero
     });
     res.json(books);
   } catch (error) {
@@ -502,7 +502,7 @@ const searchBooksInDB = async (req, res) => {
         { model: Image, attributes: ['image_id', 'image_url'] },
         { model: Category, attributes: ['category_id', 'category_name'] }
       ],
-      order: [['createdAt', 'DESC']]
+      order: [['createdat', 'DESC']]
     });
 
     return res.json(Array.isArray(books) ? books : []);
